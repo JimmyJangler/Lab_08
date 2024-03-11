@@ -125,7 +125,7 @@ public class SafeInput {
             boolean done = false;
 
             do {
-                System.out.print("\n" + prompt + "[" + low + "-" + high + "]");
+                System.out.print("\n" + prompt + "[" + low + "-" + high + "]: ");
                 if (pipe.hasNextDouble()) {
                     retValue = pipe.nextDouble();
                     pipe.nextLine();
@@ -158,7 +158,7 @@ public class SafeInput {
             String trash = "";
             String inputYN = "";
             boolean done = false;
-            boolean retValue = true;
+            boolean retValue = false;
 
             do {
                 System.out.print("\n" + prompt + "[Y/N]: ");
@@ -167,15 +167,13 @@ public class SafeInput {
                     inputYN = pipe.nextLine();
                     if (inputYN.equalsIgnoreCase("Y"))
                     {
-                        pipe.nextLine();
                         retValue = true;
                         done = true;
                     } else if (inputYN.equalsIgnoreCase("N")) {
-                        pipe.nextLine();
                         retValue = false;
                         done = true;
                     } else {
-                        trash = pipe.nextLine();
+                        trash = inputYN;
                         System.out.println("You must enter a valid input! [Y/N] Not: " + trash);
                     }
                 }
