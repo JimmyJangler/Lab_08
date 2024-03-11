@@ -182,14 +182,74 @@ public class SafeInput {
             return retValue;
         }
 
-        /**
+    /**
+     * Method checking if input matches regExpression
+     * @param pipe scanner for system.in
+     * @param prompt prompt user for input
+     * @param regEx set regEx to match string with
+     * @return returns string that matches regEx
+     */
 
         public static String getRegExString(Scanner pipe, String prompt, String regEx)
         {
+            String value = "";
+            boolean gotAValue = false;
+         do
+         {
+             System.out.print(prompt + ": ");
+             value = pipe.nextLine();
+             if (value.matches(regEx))
+             {
+                 gotAValue = true;
+             } else {
+                 System.out.println("\nInvalid input: " + value);
+             }
+
+         }while(!gotAValue);
+
+         return value;
 
         }
 
-         */
+    /**
+     *method for printing a pretty header
+     * @param msg msg to be printed in box
+     */
+
+    public static void prettyHeader(String msg)
+        {
+            int width = 60;
+            int msgLength = msg.length();
+            int spaces = (width - msgLength - 6) / 2;
+            // First line
+            for (int i = 0; i < width; i++) {
+                System.out.print("*");
+            }
+            System.out.println();
+
+            // Second line with centered message
+            System.out.print("***");
+            for (int i = 0; i < spaces; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(msg);
+            for (int i = 0; i < spaces; i++) {
+                System.out.print(" ");
+            }
+            // Adjust if the length of the message is an odd number
+            if ((width - msgLength - 6) % 2 != 0) {
+                System.out.print(" ");
+            }
+            System.out.println("***");
+
+            // Third line
+            for (int i = 0; i < width; i++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+
 
     }
 
